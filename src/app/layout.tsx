@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                 <SideBarHome /> {/* Hide on small screens */}
 
                                 {/* Main Content */}
-                                <main className="md:min-h-screen flex-1 p-4 lg:p-10">
+                                <main className="md:min-h-screen flex-1">
                                     {children}
                                 </main>
                             </div>

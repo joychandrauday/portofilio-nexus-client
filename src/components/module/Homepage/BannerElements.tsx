@@ -1,6 +1,6 @@
 "use client"; // Make this a Client Component
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCopy, FaGithub } from "react-icons/fa";
@@ -8,46 +8,42 @@ import { IoDocumentText } from "react-icons/io5";
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import Designation from "@/components/utils/Designation";
 import { IBanner, ISocial } from "@/types";
-import LoadingPage from "@/components/utils/Loading";
 
-const BannerElements = () => {
-    const [banner, setBanner] = useState<IBanner | null>(null);
-    const [social, setSocial] = useState<ISocial | null>(null);
-    const [loading, setLoading] = useState(true);
+const BannerElements = ({ banner, social }: { banner: IBanner, social: ISocial }) => {
 
-    // Fetch data dynamically on every page load
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const bannerRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
-                    cache: "no-store", // Ensure fresh data
-                });
-                const bannerData = await bannerRes.json();
-                setBanner(bannerData?.data?.banner);
+    // // Fetch data dynamically on every page load
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const bannerRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
+    //                 cache: "no-store", // Ensure fresh data
+    //             });
+    //             const bannerData = await bannerRes.json();
+    //             setBanner(bannerData?.data?.banner);
 
-                const socialRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
-                    cache: "no-store", // Ensure fresh data
-                });
-                const socialData = await socialRes.json();
-                setSocial(socialData?.data?.social);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    //             const socialRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
+    //                 cache: "no-store", // Ensure fresh data
+    //             });
+    //             const socialData = await socialRes.json();
+    //             setSocial(socialData?.data?.social);
+    //         } catch (error) {
+    //             console.error("Error fetching data:", error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchData();
-    }, []); // Runs once on component mount
+    //     fetchData();
+    // }, []); // Runs once on component mount
 
-    // Show loading state
-    if (loading) {
-        return <div className="text-center text-lg"><LoadingPage /></div>;
-    }
+    // // Show loading state
+    // if (loading) {
+    //     return <div className="text-center text-lg"><LoadingPage /></div>;
+    // }
 
     return (
         <div>
-            <div className="hero-content flex flex-col lg:flex-row-reverse items-center lg:items-start lg:justify-between lg:gap-12 text-center lg:text-left">
+            <div className="hero-content min-h-screen px-12 flex flex-col lg:flex-row-reverse items-center lg:items-start lg:justify-between lg:gap-12 text-center lg:text-left">
                 {/* Optimized Image */}
                 <div className="relative w-60 sm:w-72 md:w-80 lg:w-2/6 mb-8 lg:mb-0">
                     <Image

@@ -2,7 +2,7 @@
 export const getBanner = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
-            cache: 'no-store',
+            next: { revalidate: 10 },
         });
 
         const data = await res.json();

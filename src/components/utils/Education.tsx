@@ -1,4 +1,4 @@
-import { EducationData } from "@/app/about/page";
+import { EducationData } from "../module/About/About";
 
 interface EducationProps {
     educationData: EducationData[];  // Adjusted to accept EducationData[]

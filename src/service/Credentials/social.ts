@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 export const getsocial = async (): Promise<any> => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/credentials`, {
-            cache: 'no-store',
+            next: { revalidate: 10 },
         });
         const response = await res.json();
         return response.data.social;

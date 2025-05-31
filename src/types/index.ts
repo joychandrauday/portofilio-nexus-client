@@ -54,16 +54,34 @@ export type Session = {
 
 export type Blog = {
     _id: string;
+    author: {
+        _id: string;
+        name: string;
+        email: string;
+        profileImage: string;
+    }
     title: string;
     content: string;
-    createdAt: string | Date;
-    updatedAt: string | Date;
-    featuredImage: string;
     isPublished: boolean;
     category: {
         _id: string;
         name: string;
     };
+    slug: string;
+    featuredImage: string | null;
+    tags: string[];
+    views: number;
+    likes: number;
+    hearts: number;
+    comments: {
+        user: string;
+        content: string;
+        createdAt: Date;
+    }[];
+    estimatedReadTime: number;
+    metaDescription?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 };
 export type Category = {
     _id: string;

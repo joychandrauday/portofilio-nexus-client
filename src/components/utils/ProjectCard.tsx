@@ -27,7 +27,7 @@ export function ProjectCard({ project }: IProps) {
                     translateZ="50"
                     className="text-2xl font-bold text-neutral-600 dark:text-white"
                 >
-                    {project?.title}
+                    {project?.title.slice(0, 20)}...
                 </CardItem>
                 <CardItem
                     as="p"
@@ -45,7 +45,7 @@ export function ProjectCard({ project }: IProps) {
                         alt="thumbnail"
                     />
                 </CardItem>
-                <div className="flex justify-between items-center mt-20">
+                <div className="flex justify-between items-center mt-6">
 
                     <Link
                         href={`${project?.liveLink}`}>
@@ -54,13 +54,13 @@ export function ProjectCard({ project }: IProps) {
                             </div>
                         </ShinyButton>
                     </Link>
-                    <Link
+                    <a
                         href={`/projects/${project?._id}`}>
                         <ShinyButton>
                             <div className="flex items-center gap-2">View Details →
                             </div>
                         </ShinyButton>
-                    </Link>
+                    </a>
                 </div>
             </CardBody>
         </CardContainer >

@@ -43,7 +43,7 @@ const SkilledStack: React.FC = () => {
             </div>
             <div className="relative">
                 <div className="h-full overflow-hidden">
-                    <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+                    <div className="relative max-w-6xl mx-auto sm:px-6">
                         <Marquee pauseOnHover speed={50} className="flex space-x-8 sm:space-x-6 lg:space-x-8">
                             {skills.map((skill) => (
                                 <TooltipProvider key={skill.title}>

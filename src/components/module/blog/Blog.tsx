@@ -1,41 +1,14 @@
 'use client'
 import { ShinyButton } from '@/components/magicui/shiny-button';
 import LoadingPage from '@/components/utils/Loading';
-import { getAllBlogs } from '@/service/blog';
 import { IBlog } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
-const HomeBannerBlog = () => {
-    const [blogs, setBlogs] = useState<IBlog | null>(null);
-    const [loading, setLoading] = useState(true);
-
-    // Fetch data dynamically on every page load
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const blogRes = await getAllBlogs('', '')
-                console.log(blogRes, 'hell');
-                setBlogs(blogRes?.data?.blogs.slice(0, 3));
-
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []); // Runs once on component mount
-
-    // Show loading state
-    if (loading || blogs === null) {
-        return <div className="text-center text-lg"><LoadingPage /></div>;
-    }
-
+const HomeBannerBlog = ({ blogs }: { blogs: IBlog[] }) => {
     return (
-        <div className="home-banner">
+        <div className="home-banner px-12">
+            <h2 className="text-2xl mb-5 font-bold">Latest Blog Posts</h2>
             <div className="blog-list grid grid-cols-1 md:grid-cols-3 gap-4">
                 {blogs.length > 0 ? (
                     blogs.map((blog: IBlog) => (
@@ -52,7 +25,7 @@ const HomeBannerBlog = () => {
                                 </div>
 
                                 <div className="p-6">
-                                    <h3 className="text-2xl font-semibold text-white">{blog.title}</h3>
+                                    <h3 className="text-2xl font-semibold text-white">{blog.title.slice(0, 25)}</h3>
 
                                     <div className="flex items-center text-sm gap-2">
                                         <FaUser /> {blog?.author?.name || 'Unknown'}

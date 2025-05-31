@@ -8,7 +8,7 @@ export const getAllBlogs = async (limit?: string, query?: string) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/blogs?limit=${limit}&${query}`, {
-            cache: 'no-store',
+            next: { revalidate: 10 },
         }
         );
         const data = await res.json();

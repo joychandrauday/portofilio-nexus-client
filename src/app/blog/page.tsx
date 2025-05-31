@@ -21,8 +21,6 @@ const BlogPage = async ({
     const pageQuery = `page=${page}`;
     const data = await getAllBlogs('10', pageQuery);
 
-    console.log(data);
-
     return (
         <>
             <Head>

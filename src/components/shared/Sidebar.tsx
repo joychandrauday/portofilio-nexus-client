@@ -32,7 +32,7 @@ const SideBarHome: React.FC = () => {
   const isDashboard = pathname.startsWith("/dashboard"); // Check if it's a dashboard route
 
   return (
-    <div className="w-[80px] h-screen md:flex z-40 hidden sticky top-0 left-0">
+    <div className="w-[80px] h-screen md:flex z-40 hidden sticky top-16 left-0">
       <ul className="menu space-y-3 p-4 border-r border-gray-500">
         {isDashboard
           ? // Show dashboard links if inside the dashboard

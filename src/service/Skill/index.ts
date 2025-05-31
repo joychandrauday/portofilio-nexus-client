@@ -2,10 +2,10 @@
 'use server'
 
 // Fetching all Skills
-export const getSkills = async (): Promise<any> => {
+export const getSkills = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/skill`, {
-            cache: 'no-store',
+            next: { revalidate: 10 },
         });
         const data = await res.json();
         return data.data;

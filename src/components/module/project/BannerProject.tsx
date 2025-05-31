@@ -1,9 +1,11 @@
+import { ShinyButton } from "@/components/magicui/shiny-button";
 import { ProjectCard } from "@/components/utils/ProjectCard";
 import { getProjects } from "@/service/project";
 import { IProject } from "@/types";
 import Head from "next/head";
+import { FaCopy } from "react-icons/fa";
 
-const ProjectPage = async () => {
+const BannerProject = async () => {
     let { data: projects } = await getProjects();
 
     if (!Array.isArray(projects)) {
@@ -32,10 +34,22 @@ const ProjectPage = async () => {
                     <h1 className="text-3xl pl-5 font-bold tracking-tight text-gray-800 dark:text-gray-100">
                         Recent Projects
                     </h1>
+                    <a
+                        href={'/projects'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <ShinyButton>
+                            <div className="flex items-center gap-2">
+                                <FaCopy className="text-lg" /> all Projects
+                            </div>
+                        </ShinyButton>
+                    </a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 ">
                     {projects
                         .sort((a: { serial: never; }, b: { serial: never; }) => Number(a.serial) - Number(b.serial))
+                        .slice(0, 3)
                         .map((project: IProject) => (
                             <ProjectCard key={project._id} project={project} />
                         ))}
@@ -45,4 +59,4 @@ const ProjectPage = async () => {
     );
 };
 
-export default ProjectPage;
+export default BannerProject;

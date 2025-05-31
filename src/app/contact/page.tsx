@@ -87,7 +87,7 @@ const Contact: React.FC = () => {
     }, []);
 
     return (
-        <section className="flex flex-col items-center justify-center lg:px-5 min-h-[90vh]">
+        <section className="flex flex-col items-center justify-center md:px-12 min-h-[90vh]">
             <div className="bg-gradient-to-tr from-zinc-800 to-zinc-900 rounded-lg shadow-xl shadow-black lg:p-10 md:p-4 p-4 mx-auto flex flex-col lg:flex-row gap-16 w-full">
                 {/* Left Section */}
                 <div className="lg:w-1/2">
